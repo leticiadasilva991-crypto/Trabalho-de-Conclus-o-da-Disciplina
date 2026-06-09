@@ -23,6 +23,12 @@ jobs:
         run: |
           npm ci
 
+      - name: Instalar Mochawesome
+        run: npm install --save-dev mochawesome
+
+      - name: Verificar dependencias
+        run: npm list mochawesome
+
       - name: Execução dos testes e relatório com Mochawesome visualização HTML
         run: |
          npx mocha "test/servicospagamento.test.js" \
