@@ -1,0 +1,46 @@
+name: Execução por push
+
+on:
+  push:
+    branches: [main]
+
+
+jobs:
+  execucao-teste:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configurar o Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: npm
+
+      - name: Instalando dependencias
+        run: |
+          npm ci
+
+      - name: Execução dos testes e relatório com Mochawesome visualização HTML
+        run: |
+         npx mocha "test/login.test.js" \
+         --reporter mochawesome \ 
+         --reporter-options reportDir=mochawesome-report,reportFilename=resultados_testes_html
+
+      - name: Execução dos testes e relatório com Mochawesome visualização XML
+        run: |
+         npx mocha "test/login.test.js" \
+         --reporter mocha-junit-reporter \ 
+         --reporter-options mochaFile=results/testes-resultados.xml
+
+      - name: Publicar relatório de testes
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: relatorio_testes
+          path: mochawesome-report/
+
+
+            
