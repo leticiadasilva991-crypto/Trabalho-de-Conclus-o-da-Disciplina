@@ -4,14 +4,20 @@ export default class ServicoDePagamento {
         this.pagamento = [];
     }
 
-    efetuarPagamentos(codigoDeBarras, de, valor){
+    efetuarPagamentos(codigoDeBarras, de, valor, categoria){
         this.pagamento.push({
             codigoBarras: codigoDeBarras,
             empresa: de,
-            valor: valor
+            valor: valor,
+            categoria: categoria
         });
     }
+
     consultar(){
+        return this.pagamento;
+    }
+
+    ultimoPagamento(){
         return this.pagamento.at(-1);
     }
 }

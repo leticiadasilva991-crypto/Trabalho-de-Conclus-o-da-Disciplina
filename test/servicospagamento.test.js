@@ -4,7 +4,7 @@ import assert from 'node:assert'
 
 describe('Classe de Serviços de Pagamentos', () => {
 
-    it('Validar que o pagamento é efetuado e a categoria está sinalizada como "Cara"', () => {
+    it('Validar que o pagamento é efetuado e a categoria está sinalizada como "cara"', () => {
         //Arrange
         const servicoDePagamento = new ServicoDePagamento();
 
@@ -44,13 +44,15 @@ describe('Classe de Serviços de Pagamentos', () => {
         servicoDePagamento.efetuarPagamentos('4444-5555-6666', 'Empresa Y', 200);
 
         //Act
-       const pagamentos = servicoDePagamento.consultar();
+        const pagamentos = servicoDePagamento.consultar();
+        adicionarCategoria(pagamentos);
+        const ultimoPagamento = servicoDePagamento.ultimoPagamento();
 
         //Assert
-       assert.equal(ultimoPagamento.codigoBarras, '4444-5555-6666');
-       assert.equal(ultimoPagamento.empresa, 'Empresa Y');
-       assert.equal(ultimoPagamento.valor, 200);
-       assert.equal(ultimoPagamento.categoria, 'cara');
+        assert.equal(ultimoPagamento.codigoBarras, '4444-5555-6666');
+        assert.equal(ultimoPagamento.empresa, 'Empresa Y');
+        assert.equal(ultimoPagamento.valor, 200);
+        assert.equal(ultimoPagamento.categoria, 'cara');
     });
 
 });
