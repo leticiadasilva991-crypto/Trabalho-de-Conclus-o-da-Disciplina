@@ -8,20 +8,20 @@ export default class ServicoDePagamento {
         this.pagamento.push({
             codigoBarras: codigoDeBarras,
             empresa: de,
-            valorConta: valor
+            valor: valor
         });
     }
     consultar(){
-        return this.pagamento;
+        return this.pagamento.at(-1);
     }
 }
 
 export function adicionarCategoria(pagamentos) {
     pagamentos.forEach(function (pagamento) {
-        if (pagamento.valorConta > 100.00) {
-            pagamento.categoria = 'Caro';
+        if (pagamento.valor > 100.00) {
+            pagamento.categoria = 'cara';
         } else {
-            pagamento.categoria = 'Padrão';
+            pagamento.categoria = 'padrão';
         }
     });
 }
