@@ -25,22 +25,22 @@ jobs:
 
       - name: Execução dos testes e relatório com Mochawesome visualização HTML
         run: |
-         npx mocha "test/login.test.js" \
+         npx mocha "test/servicospagamento.test.js" \
          --reporter mochawesome \ 
          --reporter-options reportDir=mochawesome-report,reportFilename=resultados_testes_html
 
       - name: Execução dos testes e relatório com Mochawesome visualização XML
         run: |
-         npx mocha "test/login.test.js" \
+         npx mocha "test/servicospagamento.test.js" \
          --reporter mocha-junit-reporter \ 
          --reporter-options mochaFile=results/testes-resultados.xml
 
       - name: Publicar relatório de testes
         if: always()
-        uses: dorny/test-reporter@v1
+        uses: actions/upload-artifact@v4
         with:
           name: relatorio_testes
-          path: mochawesome-report/
+          path: ./
 
 
             
