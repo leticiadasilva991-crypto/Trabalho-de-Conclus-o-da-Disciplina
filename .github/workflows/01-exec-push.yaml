@@ -29,9 +29,6 @@ jobs:
       - name: Verificar dependencias
         run: npm list mochawesome
 
-      - name: Execução dos testes e relatório com Mochawesome visualização HTML
-        run: npx mocha test/servicospagamento.test.js --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=index
-
       - name: Execução dos testes e relatório com Mochawesome visualização XML
         run: npx mocha test/servicospagamento.test.js --reporter mocha-junit-reporter --reporter-options mochaFile=results/testes-resultados.xml
 
