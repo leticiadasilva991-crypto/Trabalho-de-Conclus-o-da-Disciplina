@@ -22,11 +22,11 @@ jobs:
         run: npm install mocha
         continue-on-error: true
 
-      - name: Run tests and generate output report
+      - name: Executar testes e gerar relatório
         run: npx mocha --reporter json --reporter-option output=test-results.json
         continue-on-error: true
 
-      - uses: actions/upload-artifact@v4  # upload test results
+      - uses: actions/upload-artifact@v4 
         name: Upload artifacts
         if: always()
         continue-on-error: true
@@ -35,7 +35,7 @@ jobs:
           path: test-results.json
 
       - uses: dorny/test-reporter@v2
-        name: Publish test results
+        name: Publicar relatório
         if: always()
         continue-on-error: true
         with:
@@ -43,18 +43,3 @@ jobs:
           name: Mocha Tests
           path: 'test-results.json'
           reporter: mocha-json
-
-      - name: Executar testes e gerar relatório HTML
-        run: |
-          npx mocha test/servicospagamento.test.js \
-            --reporter mochawesome \
-            --reporter-options reportDir=mochawesome-report,reportFilename=index
-        continue-on-error: true
-
-      - name: Publicar relatório HTML
-        if: always()
-        uses: actions/upload-artifact@v4
-        continue-on-error: true
-        with:
-          name: mochawesome-report
-          path: mochawesome-report/
