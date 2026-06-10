@@ -24,13 +24,10 @@ jobs:
           npm ci
 
       - name: Instalar Mochawesome
-        run: npm install --save-dev mochawesome
-
-      - name: Verificar dependencias
-        run: npm list mochawesome
+        run: npm install --save-dev mocha-junit-reporter
 
       - name: Execução dos testes e relatório com Mochawesome visualização XML
-        run: npx mocha test/servicospagamento.test.js --reporter mocha-junit-reporter --reporter-options mochaFile=results/testes-resultados.xml
+        run: npx mocha test/servicospagamento.test.js --reporter mochawesome --reporter-options reportDir=mochawesome-report
 
       - name: Publicar relatório de testes
         if: always()
@@ -38,6 +35,5 @@ jobs:
         with:
           name: relatorio_testes
           path: ./
-
 
             
