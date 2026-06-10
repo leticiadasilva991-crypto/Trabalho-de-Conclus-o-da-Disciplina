@@ -1,0 +1,52 @@
+name: '03 - Execução agendada'
+
+on:
+  #Cronograma de execução
+  # 1 número - minuto, 2 numero - hora, 3 numero dia do mes, 4 numero - mês e o 5 numero - dia da semana
+  schedule:
+    # cronograma de execução
+    # 1 - minuto, 2 - hora, 3 dia do mês, 4 - mês, 5 - dia da semana
+
+    #Roda a cada 30 minutos
+    - cron: '*/30 * * * *'
+      timezone: 'America/Sao_Paulo'
+
+jobs:
+  execucao-pipeline_agendada:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+
+      - run: npm test
+        continue-on-error: true
+
+      - name: Install Mocha
+        run: npm install mocha
+        continue-on-error: true
+
+      - name: Executar testes e gerar relatório
+        run: npx mocha --reporter json --reporter-option output=test-results.json
+        continue-on-error: true
+
+      - uses: actions/upload-artifact@v4 
+        name: Upload artifacts
+        if: always()
+        continue-on-error: true
+        with:
+          name: test-results
+          path: test-results.json
+
+      - uses: dorny/test-reporter@v2
+        name: Publicar relatório
+        if: always()
+        continue-on-error: true
+        with:
+          artifact: test-results
+          name: Mocha Tests
+          path: 'test-results.json'
+          reporter: mocha-json
