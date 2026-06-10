@@ -4,11 +4,10 @@ on:
   push:
     branches: [main]
 
-
 jobs:
   execucao-teste:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,17 +22,24 @@ jobs:
         run: |
           npm ci
 
-      - name: Executar testes
-        run: |
-          npx mocha test/servicospagamento.test.js \
-            --reporter mochawesome \
-            --reporter-options reportDir=mochawesome-report,reportFilename=index
+      - name: Install Mocha
+        run: npm install mocha
 
-      - name: Publicar relatório
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Run tests and generate output report
+        run: npx mocha --reporter json --reporter-option output=test-results.json
+
+      - uses: actions/upload-artifact@v4  # upload test results
+        name: Upload artifacts
+        if: ${{ !cancelled() }}
         with:
-          name: relatorio-testes
-          path: mochawesome-report/
+          name: test-results
+          path: test-results.json
 
+      - uses: dorny/test-reporter@v2
+        name: Publish test results
+        with:
+          artifact: test-results
+          name: Mocha Tests
+          path: 'test-results.json'
+          reporter: mocha-json
             
