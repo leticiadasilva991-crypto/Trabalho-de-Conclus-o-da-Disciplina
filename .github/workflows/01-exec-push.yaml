@@ -23,15 +23,17 @@ jobs:
         run: |
           npm ci
 
-      - name: Gerar relatório HTML (mochawesome)
-        run: npm run test:report
-        if: always()
+      - name: Executar testes
+        run: |
+          npx mocha test/servicospagamento.test.js \
+            --reporter mochawesome \
+            --reporter-options reportDir=mochawesome-report,reportFilename=index
 
-      - name: Publicar relatório HTML (mochawesome)
-        uses: actions/upload-artifact@v4
+      - name: Publicar relatório
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: relatorio-html-node${{ matrix.node-version }}
+          name: relatorio-testes
           path: mochawesome-report/
 
             
