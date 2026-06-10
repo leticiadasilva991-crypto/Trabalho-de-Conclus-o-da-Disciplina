@@ -23,17 +23,13 @@ jobs:
         run: |
           npm ci
 
-      - name: Instalar Mochawesome
-        run: npm install --save-dev mocha-junit-reporter
-
-      - name: Execução dos testes e relatório com Mochawesome visualização XML
-        run: npx mocha test/servicospagamento.test.js --reporter mochawesome --reporter-options reportDir=mochawesome-report
+      - name: Allure Report Official
+        uses: allure-framework/allure-action@v0.7.1
 
       - name: Publicar relatório de testes
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: allure-framework/allure-action@v0
         with:
-          name: relatorio_testes
-          path: ./
+          report-directory: "./allure-report"
 
             
