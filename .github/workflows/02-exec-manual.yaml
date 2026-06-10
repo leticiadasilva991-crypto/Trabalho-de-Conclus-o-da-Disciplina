@@ -1,11 +1,10 @@
-name: '01 - Execução por push'
+name: '02 - Execução manual'
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  execucao-pipeline_push:
+  execucao-pipeline_manual:
     runs-on: ubuntu-latest
 
     steps:
