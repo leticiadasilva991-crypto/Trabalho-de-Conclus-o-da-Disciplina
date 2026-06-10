@@ -1,0 +1,72 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-06-10T14:29:40.239Z",
+    "end": "2026-06-10T14:29:40.240Z",
+    "duration": 1
+  },
+  "tests": [
+    {
+      "title": "Validar que o pagamento é efetuado e a categoria está sinalizada como \"cara\"",
+      "fullTitle": "Classe de Serviços de Pagamentos Validar que o pagamento é efetuado e a categoria está sinalizada como \"cara\"",
+      "file": "C:\\Projetos\\QACoders\\RobotFramework\\Trabalho-de-Conclus-o-da-Disciplina\\test\\servicospagamento.test.js",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "Validar que o pagamento é efetuado e a categoria está sinalizada como \"padrão\"",
+      "fullTitle": "Classe de Serviços de Pagamentos Validar que o pagamento é efetuado e a categoria está sinalizada como \"padrão\"",
+      "file": "C:\\Projetos\\QACoders\\RobotFramework\\Trabalho-de-Conclus-o-da-Disciplina\\test\\servicospagamento.test.js",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "Validar que a última transferencia é retornada com sucesso",
+      "fullTitle": "Classe de Serviços de Pagamentos Validar que a última transferencia é retornada com sucesso",
+      "file": "C:\\Projetos\\QACoders\\RobotFramework\\Trabalho-de-Conclus-o-da-Disciplina\\test\\servicospagamento.test.js",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    }
+  ],
+  "pending": [],
+  "failures": [],
+  "passes": [
+    {
+      "title": "Validar que o pagamento é efetuado e a categoria está sinalizada como \"cara\"",
+      "fullTitle": "Classe de Serviços de Pagamentos Validar que o pagamento é efetuado e a categoria está sinalizada como \"cara\"",
+      "file": "C:\\Projetos\\QACoders\\RobotFramework\\Trabalho-de-Conclus-o-da-Disciplina\\test\\servicospagamento.test.js",
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "Validar que o pagamento é efetuado e a categoria está sinalizada como \"padrão\"",
+      "fullTitle": "Classe de Serviços de Pagamentos Validar que o pagamento é efetuado e a categoria está sinalizada como \"padrão\"",
+      "file": "C:\\Projetos\\QACoders\\RobotFramework\\Trabalho-de-Conclus-o-da-Disciplina\\test\\servicospagamento.test.js",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "Validar que a última transferencia é retornada com sucesso",
+      "fullTitle": "Classe de Serviços de Pagamentos Validar que a última transferencia é retornada com sucesso",
+      "file": "C:\\Projetos\\QACoders\\RobotFramework\\Trabalho-de-Conclus-o-da-Disciplina\\test\\servicospagamento.test.js",
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    }
+  ]
+}

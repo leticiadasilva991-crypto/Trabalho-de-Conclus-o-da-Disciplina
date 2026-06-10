@@ -36,4 +36,16 @@ jobs:
           name: Mocha Tests
           path: 'test-results.json'
           reporter: mocha-json
-            
+
+      - name: Executar testes e gerar relatório HTML
+        run: |
+          npx mocha test/servicospagamento.test.js \
+            --reporter mochawesome \
+            --reporter-options reportDir=mochawesome-report,reportFilename=index
+
+      - name: Publicar relatório HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: mochawesome-report/
