@@ -27,13 +27,16 @@ jobs:
         run: npx allure run -- npm run test
 
       - name: Allure Report Official
-        uses: allure-framework/allure-action@v0.7.1
+        uses: allure-framework/allure-action@v0
+        with:
+          report-directory: "./"
+          remote-href: "https://allure-framework.github.io/allure-action/"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publicar relatório de testes
         if: always()
         uses: allure-framework/allure-action@v0
         with:
           report-directory: "./allure-report"
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
             
