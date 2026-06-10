@@ -42,6 +42,7 @@ describe('Classe de Serviços de Pagamentos', () => {
         const servicoDePagamento = new ServicoDePagamento();
         servicoDePagamento.efetuarPagamentos('1111-2222-3333', 'Empresa X', 150);
         servicoDePagamento.efetuarPagamentos('4444-5555-6666', 'Empresa Y', 200);
+        servicoDePagamento.efetuarPagamentos('4444-5555-000', 'Empresa W', 300);
 
         //Act
         const pagamentos = servicoDePagamento.consultar();
