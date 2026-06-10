@@ -26,17 +26,13 @@ jobs:
       - name: Executar os testes e gerar o report
         run: npx allure run -- npm run test
 
-      - name: Allure Report Official
-        uses: allure-framework/allure-action@v0
+      - name: Relatórios de resultados de testes
+        uses: ctrf-io/github-test-reporter@v1
         with:
-          report-directory: "./"
-          remote-href: "https://allure-framework.github.io/allure-action/"
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publicar relatório de testes
+         report-path: './ctrf/*.json'
+         pull-request-report: true
         if: always()
-        uses: allure-framework/allure-action@v0
-        with:
-          report-directory: "./allure-report"
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             
