@@ -26,11 +26,10 @@ jobs:
         run: npx mocha --reporter json --reporter-option output=test-results.json
         continue-on-error: true
 
-      - uses: dorny/test-reporter@v2
-        name: Publicar relatório
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
         if: always()
         with:
-          artifact: test-results
-          name: Mocha Tests
+          name: test-results
           path: test-results.json
-          reporter: mocha-json
+
