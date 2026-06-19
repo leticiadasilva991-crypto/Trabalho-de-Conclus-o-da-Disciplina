@@ -27,7 +27,6 @@ A solução contempla:
 ---
 
 # Estrutura da Pipeline
-
 ## Gatilhos (on)
 A pipeline é acionada de três formas:
 
