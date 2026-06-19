@@ -2,14 +2,14 @@
 
 ## Objetivo
 
-Este projeto tem como objetivo demonstrar a implementação de uma pipeline de Integração Contínua (CI) utilizando o GitHub Actions em um projeto com testes automatizados.
+Este projeto tem como objetivo demonstrar a implementação de uma pipeline de Integração Contínua (CI) utilizando o GitHub Actions em um projeto com testes unitários.
 
 A solução contempla:
 
 * Execução automática da pipeline a cada push na branch principal.
 * Execução manual da pipeline por meio da interface do GitHub Actions.
 * Execução agendada utilizando expressões Cron.
-* Execução automatizada dos testes.
+* Execução unitária dos testes.
 * Geração de relatórios de execução dos testes.
 * Armazenamento e publicação dos relatórios gerados como artefatos da pipeline.
 * Documentação da solução e dos conceitos aplicados.
@@ -26,27 +26,24 @@ A solução contempla:
 
 ---
 
-# Estrutura das Pipelines
+# Estrutura da Pipeline
 
-Foram desenvolvidos três workflows independentes para atender aos diferentes cenários de execução exigidos pela atividade.
+## Gatilhos (on)
+A pipeline é acionada de três formas:
+
+push – a cada push no repositório
+workflow_dispatch – execução manual pela interface do GitHub
+schedule – automaticamente toda sexta-feira às 16h e 21h (UTC), via expressão cron 0 16,21 * * 5
 
 ## 1. Execução por Push
 
-Arquivo:
-
-```text
-.github/workflows/01-exec-push.yaml
-```
-
-Esta pipeline é executada automaticamente sempre que um push é realizado na branch `main`.
+A pipeline é executada automaticamente sempre que um push é realizado na branch `main`.
 
 ### Evento de disparo
 
 ```yaml
 on:
   push:
-    branches:
-      - main
 ```
 
 ### Fluxo executado
@@ -54,19 +51,13 @@ on:
 1. Checkout do código-fonte.
 2. Configuração do ambiente Node.js.
 3. Instalação das dependências do projeto.
-4. Execução dos testes automatizados.
+4. Execução dos testes unitários.
 5. Geração do relatório de execução.
 6. Publicação dos resultados na pipeline.
 
 ---
 
 ## 2. Execução Manual
-
-Arquivo:
-
-```text
-.github/workflows/02-exec-manual.yaml
-```
 
 Esta pipeline pode ser executada manualmente por qualquer usuário com acesso ao repositório.
 
@@ -89,12 +80,6 @@ on:
 
 ## 3. Execução Agendada
 
-Arquivo:
-
-```text
-.github/workflows/03-exec-agendada.yaml
-```
-
 Esta pipeline é executada automaticamente de acordo com um agendamento definido por uma expressão Cron.
 
 ### Evento de disparo
@@ -102,15 +87,15 @@ Esta pipeline é executada automaticamente de acordo com um agendamento definido
 ```yaml
 on:
   schedule:
-    - cron: '0 9,18 * * 5'
+    - cron: '0 16,21 * * 5'
 ```
 
 ### Agendamento configurado
 
 A execução ocorre automaticamente:
 
-* Às 09:00
-* Às 18:00
+* Às 16:00
+* Às 21:00
 
 Toda sexta-feira.
 
@@ -118,7 +103,7 @@ Toda sexta-feira.
 
 # Estratégia de Testes
 
-Para validação do funcionamento das pipelines foram criados três cenários de teste:
+Para validação do funcionamento da pipeline foram criados três cenários de teste:
 
 * Dois testes com resultado esperado de sucesso.
 * Um teste propositalmente configurado para falhar.
@@ -157,7 +142,7 @@ Essa configuração permite que a pipeline continue sua execução mesmo quando 
 
 Ao final da execução de qualquer workflow, a pipeline deverá:
 
-* Executar os testes automatizados.
+* Executar os testes unitários.
 * Gerar o relatório de execução.
 * Publicar os resultados dos testes.
 * Armazenar os artefatos gerados.
