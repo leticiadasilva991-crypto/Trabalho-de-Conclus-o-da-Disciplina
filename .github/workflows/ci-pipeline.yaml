@@ -1,4 +1,4 @@
-name: '02 - Execução manual'
+name: 'Execução da pipeline'
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-  execucao-pipeline_manual:
+  execucao:
     runs-on: ubuntu-latest
 
     steps:
